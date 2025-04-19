@@ -3,86 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contatos para Agendamento de Exames</title>
+    <title>Agendamento de Exames</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --azul-escuro: #1a4b8c;
+            --azul-medio: #2a75bb;
+            --azul-claro: #e6f2ff;
+            --cinza: #6c757d;
+        }
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             max-width: 650px;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
-            background-color: #e6f2ff;
+            background-color: var(--azul-claro);
             color: #333;
+            line-height: 1.6;
         }
         .header {
             margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
-            background-color: #0077cc;
-            border-radius: 12px;
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--azul-escuro);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 40px;
-            font-weight: bold;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
         }
-        .logo:after {
-            content: "📅";
-            font-size: 45px;
+        .logo-icon:hover {
+            transform: translateY(-3px);
+            background-color: var(--azul-medio);
         }
         h1 {
-            color: #005599;
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-        .doctor-info {
-            background-color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            font-size: 14px;
-            line-height: 1.5;
+            color: var(--azul-escuro);
+            margin: 5px 0 15px;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
         .button {
             display: block;
-            margin: 15px auto;
-            padding: 12px 20px;
+            margin: 18px auto;
+            padding: 14px 24px;
             background-color: white;
-            color: #005599;
+            color: var(--azul-escuro);
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            width: 80%;
-            max-width: 300px;
-            border: 2px solid #0077cc;
+            border-radius: 12px;
+            font-weight: 600;
+            width: 85%;
+            max-width: 320px;
+            border: 2px solid var(--azul-medio);
             transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .button:hover {
-            background-color: #0077cc;
+            background-color: var(--azul-medio);
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
         .option {
-            margin: 10px 0;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            margin: 15px 0;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
             display: none;
             background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
         .back-button {
             background-color: white;
-            color: #666;
-            border: 2px solid #666;
+            color: var(--cinza);
+            border: 2px solid var(--cinza);
         }
         .back-button:hover {
-            background-color: #666;
+            background-color: var(--cinza);
             color: white;
         }
         .whatsapp-button {
@@ -95,39 +106,50 @@
             color: white;
         }
         .clinic-info {
-            margin: 15px 0;
-            line-height: 1.6;
+            margin: 20px 0;
+            line-height: 1.7;
+            font-size: 16px;
         }
         .specialty-note {
-            color: #d63384;
-            font-weight: bold;
+            color: var(--azul-escuro);
+            font-size: 14px;
+            margin: 15px 0;
             font-style: italic;
-            margin: 10px 0;
+            opacity: 0.9;
         }
         .footer {
-            margin-top: 40px;
-            padding: 20px;
+            margin-top: 50px;
+            padding: 25px;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-            font-size: 13px;
-            line-height: 1.5;
+            border-radius: 12px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            font-size: 14px;
         }
         .footer strong {
-            color: #005599;
+            color: var(--azul-escuro);
+            font-size: 15px;
+        }
+        .preference-note {
+            font-size: 13px;
+            color: var(--cinza);
+            margin-top: 25px;
+            font-style: italic;
+            padding: 0 15px;
+        }
+        .clinic-title {
+            color: var(--azul-escuro);
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="logo"></div>
-        <h1>Contatos para Agendamento de Exames</h1>
-    </div>
-
-    <div class="doctor-info">
-        <strong>DR. PEDRO GUEDES</strong><br>
-        CRM 19244 / RQE 4753<br>
-        Médico Radiologista
+        <div class="logo-container">
+            <div class="logo-icon"><i class="far fa-calendar-alt"></i></div>
+            <div class="logo-icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="logo-icon"><i class="fab fa-whatsapp"></i></div>
+        </div>
+        <h1>AGENDAMENTO DE EXAMES</h1>
     </div>
 
     <div id="main-menu">
@@ -136,7 +158,7 @@
     </div>
 
     <div id="usg-option" class="option">
-        <h2>Ultrassonografia - Clínica Lucilo Ávila</h2>
+        <h2 class="clinic-title">Ultrassonografia - Clínica Lucilo Ávila</h2>
         <div class="clinic-info">
             <p><strong>Atendimento apenas por WhatsApp</strong></p>
             <p>Concierge: (81) 98866-7878</p>
@@ -146,7 +168,8 @@
     </div>
 
     <div id="tcrm-option" class="option">
-        <h2>Tomografia/Ressonância - Escolha uma opção</h2>
+        <h2 class="clinic-title">Tomografia/Ressonância - Escolha uma opção</h2>
+        <div class="specialty-note">Elastografia por Ressonância disponível apenas na Maximagem</div>
         <a href="#" class="button" onclick="showClinic('lucilo')">Clínica Lucilo Ávila</a>
         <a href="#" class="button" onclick="showClinic('unimed')">Unimed Recife</a>
         <a href="#" class="button" onclick="showClinic('maximagem')">Maximagem</a>
@@ -154,32 +177,34 @@
     </div>
 
     <div id="lucilo-option" class="option">
-        <h2>TC/RM - Clínica Lucilo Ávila</h2>
+        <h2 class="clinic-title">TC/RM - Clínica Lucilo Ávila</h2>
         <div class="clinic-info">
             <p><strong>Atendimento apenas por WhatsApp</strong></p>
             <p>Concierge: (81) 98866-7878</p>
         </div>
         <a href="https://wa.me/5581988667878" class="button whatsapp-button" target="_blank">Contato via WhatsApp</a>
+        <p class="preference-note">* Informar também no momento da realização do exame que tem preferência de laudo por Dr. Pedro</p>
         <a href="#" class="button back-button" onclick="backToTcRm()">Voltar</a>
     </div>
 
     <div id="unimed-option" class="option">
-        <h2>TC/RM - Unimed Recife</h2>
+        <h2 class="clinic-title">TC/RM - Unimed Recife</h2>
         <div class="clinic-info">
             <p><strong>Contato Geruza</strong></p>
             <p>WhatsApp: (81) 98729-5574</p>
         </div>
         <a href="https://wa.me/5581987295574" class="button whatsapp-button" target="_blank">Contato via WhatsApp</a>
+        <p class="preference-note">* Informar também no momento da realização do exame que tem preferência de laudo por Dr. Pedro</p>
         <a href="#" class="button back-button" onclick="backToTcRm()">Voltar</a>
     </div>
 
     <div id="maximagem-option" class="option">
-        <h2>Maximagem</h2>
-        <div class="specialty-note">(Elastografia por Ressonância apenas neste serviço)</div>
+        <h2 class="clinic-title">Maximagem</h2>
         <div class="clinic-info">
             <p>WhatsApp: (81) 98117-0939</p>
         </div>
         <a href="https://wa.me/5581981170939" class="button whatsapp-button" target="_blank">Contato via WhatsApp</a>
+        <p class="preference-note">* Informar também no momento da realização do exame que tem preferência de laudo por Dr. Pedro</p>
         <a href="#" class="button back-button" onclick="backToTcRm()">Voltar</a>
     </div>
 
