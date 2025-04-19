@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Exames</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .doctor-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .button {
+            display: block;
+            margin: 15px auto;
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            width: 80%;
+            max-width: 300px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .option {
+            margin: 10px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+        .back-button {
+            background-color: #6c757d;
+            margin-top: 30px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .whatsapp-button {
+            background-color: #25D366;
+            margin: 20px auto;
+        }
+        .whatsapp-button:hover {
+            background-color: #1DA851;
+        }
+        .clinic-info {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="doctor-info">
+        <strong>DR. PEDRO GUEDES</strong><br>
+        CRM 19244 / RQE 4753<br>
+        Médico Radiologista<br>
+        Membro titular do CBR<br>
+        Preceptor da residência de radiologia do Hospital da Restauração HR - PE
+    </div>
+
+    <div id="main-menu">
+        <h1>Agendamento de Exames</h1>
+        <a href="#" class="button" onclick="showOption('usg')">Marcação de Ultrassonografia (USG)</a>
+        <a href="#" class="button" onclick="showOption('tcrm')">Marcação de Tomografia/Ressonância (TC/RM)</a>
+    </div>
+
+    <div id="usg-option" class="option">
+        <h2>Ultrassonografia - Clínica Lucilo Ávila</h2>
+        <div class="clinic-info">
+            <p><strong>Atendimento apenas por WhatsApp</strong></p>
+            <p>Concierge: (81) 98866-7878</p>
+        </div>
+        <a href="https://wa.me/5581988667878" class="button whatsapp-button" target="_blank">Contato via WhatsApp</a>
+        <a href="#" class="button back-button" onclick="backToMain()">Voltar</a>
+    </div>
+
+    <div id="tcrm-option" class="option">
+        <h2>Tomografia/Ressonância - Escolha uma opção</h2>
+        <a href="#" class="button" onclick="showClinic('lucilo')">Clínica Lucilo Ávila</a>
+        <a href="#" class="button" onclick="showClinic('unimed')">Unimed Recife</a>
+        <a href="#" class="button" onclick="showClinic('maximagem')">Maximagem</a>
+        <a href="#" class="button back-button" onclick="backToMain()">Voltar</a>
+    </div>
+
+    <div id="lucilo-option" class="option">
+        <h2>TC/RM - Clínica Lucilo Ávila</h2>
+        <div class="clinic-info">
+            <p><strong>Atendimento apenas por WhatsApp</strong></p>
+            <p>Concierge: (81) 98866-7878</p>
+        </div>
+        <a href="https://wa.me/5581988667878" class="button whatsapp-button" target="_blank">Contato via WhatsApp</a>
+        <a href="#" class="button back-button" onclick="backToTcRm()">Voltar</a>
+    </div>
+
+    <div id="unimed-option" class="option">
+        <h2>TC/RM - Unimed Recife</h2>
+        <div class="clinic-info">
+            <p><strong>Contato Geruza</strong></p>
+            <p>WhatsApp: (81) 98729-5574</p>
+        </div>
+        <a href="https://wa.me/5581987295574" class="button whatsapp-button" target="_blank">Contato via WhatsApp</a>
+        <a href="#" class="button back-button" onclick="backToTcRm()">Voltar</a>
+    </div>
+
+    <div id="maximagem-option" class="option">
+        <h2>Maximagem - Elastografia por Ressonância</h2>
+        <div class="clinic-info">
+            <p>WhatsApp: (81) 98117-0939</p>
+        </div>
+        <a href="https://wa.me/5581981170939" class="button whatsapp-button" target="_blank">Contato via WhatsApp</a>
+        <a href="#" class="button back-button" onclick="backToTcRm()">Voltar</a>
+    </div>
+
+    <script>
+        function showOption(option) {
+            document.getElementById('main-menu').style.display = 'none';
+            if (option === 'usg') {
+                document.getElementById('usg-option').style.display = 'block';
+            } else if (option === 'tcrm') {
+                document.getElementById('tcrm-option').style.display = 'block';
+            }
+        }
+
+        function showClinic(clinic) {
+            document.getElementById('tcrm-option').style.display = 'none';
+            document.getElementById(clinic + '-option').style.display = 'block';
+        }
+
+        function backToMain() {
+            document.querySelectorAll('.option').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.getElementById('main-menu').style.display = 'block';
+        }
+
+        function backToTcRm() {
+            document.querySelectorAll('.option').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.getElementById('tcrm-option').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
